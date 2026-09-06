@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links Fitness | Promos</title>
+    <style>
+        :root {
+            --bg-color: #001d42;
+            --text-color: #ffffff;
+            --button-bg: #488dce;
+            --button-hover: #ff5722;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 3rem 1rem;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .profile img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--button-hover);
+            margin-bottom: 10px;
+        }
+
+        .profile h1 {
+            margin: 0 0 5px;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .profile p {
+            margin: 0;
+            font-size: 1rem;
+            color: #b3b3b3;
+        }
+
+        .links-container {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .link-btn {
+            background-color: var(--button-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            /* Reduzi o padding para acomodar a imagem melhor */
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* Espaço entre a imagem e o texto */
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .link-btn:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 87, 34, 0.3);
+        }
+
+        /* Estilo da miniatura do produto */
+        .link-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+            object-fit: cover;
+            background-color: #fff;
+            /* Fundo branco caso a imagem seja PNG transparente */
+        }
+
+        .link-text {
+            flex: 1;
+            /* Faz o texto ocupar o resto do espaço e ficar centralizado visualmente */
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="profile">
+        <img src="img/banner.png" alt="Foto de Perfil">
+        <h1>Coach Henrique</h1>
+        <p>Ofertas, Equipamentos e Suplementação</p>
+    </div>
+
+    <div class="links-container" id="links-container">
+    </div>
+
+    <script>
+        // =========================================================
+        // ÁREA DE MANUTENÇÃO: Agora com o campo "imagem"
+        // =========================================================
+        const meusLinks = [
+            {
+                titulo: "Grupo de Promoções no WhatsApp",
+                url: "https://chat.whatsapp.com/Jz3t5VStz3Y0jOD4CI3ITX?s=cl&p=a&mlu=4&ilr=4",
+                imagem: "img/icone-de-whatsapp.png" // Coloque o link da foto do produto aqui
+            },
+            {
+                titulo: "Grip Ultra Tech - 4 cores",
+                url: "https://s.click.aliexpress.com/e/_msdJPcr",
+                imagem: "img/grip-corte.jpeg"
+            },
+            {
+                titulo: "Grip Hypalon - 19 cores",
+                url: "https://s.click.aliexpress.com/e/_mqvNbEb",
+                imagem: "img/grip-hypalon-19cores.jpeg"
+            },
+            {
+                titulo: "Grip Frog - 22 cores",
+                url: "https://s.click.aliexpress.com/e/_mMuIy6J",
+                imagem: "img/grip-frog.jpeg"
+            },
+            {
+                titulo: "Munhequeira Seca Suor - 21 cores",
+                url: "https://s.click.aliexpress.com/e/_mMuIy6J",
+                imagem: "img/munhequeira.jpeg"
+            },
+            {
+                titulo: "Cinto de Levantamento - 5 cores",
+                url: "https://s.click.aliexpress.com/e/_mKfNR0P",
+                imagem: "img/cinto.jpeg"
+            },
+            {
+                titulo: "Munhequeira de compressão - 3 cores",
+                url: "https://s.shopee.com.br/Ln1SBBK7i",
+                imagem: "img/munhequeira-compressao.jpeg"
+            }
+        ];
+
+        // =========================================================
+        // Renderização
+        // =========================================================
+        const container = document.getElementById('links-container');
+
+        meusLinks.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.className = 'link-btn';
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+
+            // Se houver uma imagem configurada, cria a tag <img>
+            if (link.imagem) {
+                const img = document.createElement('img');
+                img.src = link.imagem;
+                img.alt = link.titulo;
+                img.className = 'link-img';
+                a.appendChild(img);
+            }
+
+            // Cria um span para o texto
+            const span = document.createElement('span');
+            span.textContent = link.titulo;
+            span.className = 'link-text';
+
+            // Se não houver imagem, centraliza o texto totalmente
+            if (!link.imagem) {
+                span.style.textAlign = 'center';
+            }
+
+            a.appendChild(span);
+            container.appendChild(a);
+        });
+    </script>
+</body>
+
+</html>
